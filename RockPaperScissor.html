@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+    let playerPoints = 0;
+    let computerPoints = 0;
+    function computerPlay()
+    {
+        let randomNum = Math.round((Math.random() * 2));
+        if (randomNum == 1) return `rock`;
+        else if (randomNum == 2) return `paper`;
+        else return `scissors`;
+    }
+    function playRound(playerSelection, computerSelection)
+    {   playerSelection = playerSelection.toLowerCase()
+        let  playerPoints
+        if (playerSelection === computerSelection)
+        {
+            console.log("It's a tie.");
+            return 0;
+        } 
+        switch (playerSelection)
+        {
+            case 'scissors':
+                playerPoints = computerSelection === 'paper'
+                break;
+            case 'rock':
+                playerPoints = computerSelection === 'scissors'
+                break;
+            case 'paper':
+                playerPoints = computerSelection === 'rock'
+                break;
+        }
+        if (playerPoints)
+        {
+            ++playerPoints;
+            return console.log(`Player wins. ${playerSelection.charAt(0).toUpperCase()+playerSelection.slice(1).toLowerCase()} beats ${computerSelection}`);
+        } 
+        else 
+        {
+            ++computerPoints;
+            return console.log(`Computer wins. ${computerSelection.charAt(0).toUpperCase()+computerSelection.slice(1).toLowerCase()} beats ${playerSelection}`);
+        }
+    }
+    function game() {
+        playRound(prompt("Enter rock, paper, or scissors"),computerPlay())
+        playRound(prompt("Enter rock, paper, or scissors"),computerPlay())
+        playRound(prompt("Enter rock, paper, or scissors"),computerPlay())
+        playRound(prompt("Enter rock, paper, or scissors"),computerPlay())
+        playRound(prompt("Enter rock, paper, or scissors"),computerPlay())
+        if (computerPoints == playerPoints) console.log("It's a tie. No one wins")
+        else if (computerPoints > playerPoints) console.log("The computer wins. Try again next time")
+        else console.log("Player wins! Congratuations!!!!")
+    }
+    game()
+  </script>
+</body>
+</html>
